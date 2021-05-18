@@ -28,9 +28,15 @@ class User extends MachineOption {
     logic(){
         if (this._selected === this._sort){
             return `${this._name}, você empatou! - usuário: ${this._selected} | máquina: ${this._sort}`
+        } else if ((this._selected === 'Pedra' && this._sort === 'Tesoura') || (this._selected === 'Tesoura' && this._sort === 'Papel') || (this._selected === 'Papel' && this._sort === 'Pedra')) {
+            return `${this._name}, você ganhou! - usuário: ${this._selected} | máquina: ${this._sort}`
         } else {
-            return `${this._name}, A máquina está aprendendo - usuário: ${this._selected} | máquina: ${this._sort}`
+            return `${this._name}, você perdeu! - usuário: ${this._selected} | máquina: ${this._sort}`
         }
+
+        // else if ((this._selected === 'Pedra' && this._sort === 'Papel') || (this._selected === 'Tesoura' && this._sort === 'Pedra') || (this._selected === 'Papel' && this._sort === 'Tesoura')){
+        //     return `${this._name},Você perdeu! - usuário: ${this._selected} | máquina: ${this._sort}`
+        // }
     }
 
     game(){
