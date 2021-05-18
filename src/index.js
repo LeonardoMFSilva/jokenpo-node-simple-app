@@ -5,9 +5,15 @@
 //     rl.close();
 // })
 
+// const options = require('./data')
+// const MachineOption = require('./controller/class/machine')
+// let sorteio = new MachineOption({opt: options}).sort()
+
+// console.log(sorteio)
+
 const options = require('./data')
-const MachineOption = require('./controller/class')
+const User = require('./controller/class/user')
 
-let sorteio = new MachineOption({opt: options}).sort()
+let usuario = new User({opt: options, name: 'Maria', selected: 'Papel'}).game()
 
-console.log(sorteio)
+console.log(usuario)
