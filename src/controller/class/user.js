@@ -1,4 +1,7 @@
-const MachineOption = require('./machine')
+const MachineOption = require('./machine');
+const inquirer = require('inquirer');
+const options = require('../../data');
+const gameby = require('../../data/gameby')
 
 class User extends MachineOption {
     constructor({opt, name, selected}) {
@@ -27,11 +30,11 @@ class User extends MachineOption {
 
     logic(){
         if (this._selected === this._sort){
-            return `${this._name}, você empatou! - usuário: ${this._selected} | máquina: ${this._sort}`
+            return `${this._name}, você escolheu: ${this._selected}, e a máquina: ${this._sort}... houve um empate!`
         } else if ((this._selected === 'Pedra' && this._sort === 'Tesoura') || (this._selected === 'Tesoura' && this._sort === 'Papel') || (this._selected === 'Papel' && this._sort === 'Pedra')) {
-            return `${this._name}, você ganhou! - usuário: ${this._selected} | máquina: ${this._sort}`
+            return `${this._name}, você escolheu: ${this._selected}, e a máquina: ${this._sort}... você ganhou!!!`
         } else {
-            return `${this._name}, você perdeu! - usuário: ${this._selected} | máquina: ${this._sort}`
+            return `${this._name}, você escolheu: ${this._selected}, e a máquina: ${this._sort}... você perdeu ):`
         }
 
         // else if ((this._selected === 'Pedra' && this._sort === 'Papel') || (this._selected === 'Tesoura' && this._sort === 'Pedra') || (this._selected === 'Papel' && this._sort === 'Tesoura')){
@@ -40,7 +43,24 @@ class User extends MachineOption {
     }
 
     game(){
-        return this.logic();
+        console.info(gameby);
+        return inquirer.prompt([
+            {
+                name: 'name',
+                message: 'Qual o seu nome? ',
+                default: 'Jogador'
+            },
+            {
+                type: 'list',
+                name: 'jokenpo',
+                message: 'Selecione uma opção: ',
+                choices: options
+            }
+        ]).then((answers) => {
+            this._name = answers.name
+            this._selected = answers.jokenpo
+            console.info(`${this.logic()}`)
+        })
     }
 }
 
