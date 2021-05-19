@@ -1,2 +1,2 @@
-# jokenpo-node-simple-app
-Simple app with node and js - Gama Academy & Afya Labs
+# jokenpo-simple-app
+Simple app with js - Gama Academy & Afya Labs
